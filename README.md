@@ -1,5 +1,10 @@
 # README
 
+Files of importance:
+- app/libs/parser.rb
+- app/libs/vote_parser.rb
+- app/mappers/relational.rb
+
 Lets start with the `Parser` class, the entry point into loading data into the system. To run it, simply type
 ```ruby
 rails runner app/libs/parser.rb votes.txt

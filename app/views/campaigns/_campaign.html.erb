@@ -1,0 +1,13 @@
+<div id="<%= dom_id campaign %>">
+  <h2>Contestant results for Campaign: <%= @campaign.name %></h2>
+
+  <ul>
+    <% @campaign.contestants.each do |contestant| %>
+      <div class="contestant_box">
+        <h3><%= contestant.name %></h3>
+        <p style="color: blue">Votes: <%= contestant.votes %></p>
+        <p style="color: orange">Uncounted: <%= contestant.uncounted %></p>
+      </div>
+    <% end %>
+  </ul>
+</div>

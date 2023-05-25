@@ -1,0 +1,13 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Campaigns</h1>
+
+<div id="campaigns">
+  <% @campaigns.each do |campaign| %>
+    <ul>
+      <li /><%= link_to "#{campaign.name}", campaign %>
+    </ul>
+  <% end %>
+</div>
+
+<%= link_to "New campaign", new_campaign_path %>

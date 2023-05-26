@@ -12,9 +12,7 @@ class Parser
 
   def call(data_mapper: Relational)
     file.readlines.each do |line|
-      next unless line.valid_encoding?
-
-      vote_parser.parse(line.chomp.chomp)
+      vote_parser.parse(line.scrub.chomp.chomp)
     end
 
     data_mapper.call(vote_parser.data)

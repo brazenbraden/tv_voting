@@ -27,15 +27,20 @@ RSpec.describe Parser do
     before { klass.call }
 
     it "adds all the campaigns" do
-      expect(Campaign.all.count).to eq(5)
+      expect(Campaign.all.count).to eq(4)
     end
 
     it "adds all the contestants" do
-      expect(Contestant.all.count).to eq(105)
+      expect(Contestant.all.count).to eq(40)
     end
 
     it "adds contestants to a campaign" do
-      expect(Campaign.first.contestants.count).to eq(21)
+      expect(Campaign.first.contestants.count).to eq(11)
+    end
+
+    it "is correct" do
+      contestants = Campaign.find_by(name: "Emmerdale").contestants.pluck(:name)
+      expect(contestants).not_to include("Antony")
     end
   end
 end

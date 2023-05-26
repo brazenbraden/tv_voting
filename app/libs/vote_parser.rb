@@ -4,12 +4,17 @@ class VoteParser
   attr_reader :data
 
   def initialize
-    contestant_hash = Hash.new { |h, k| h[k] = { votes: 0, uncounted: 0 } }
-    @data = Hash.new { |ch, ck| ch[ck] = contestant_hash }
+    @data = Hash.new { |ch, ck| ch[ck] = {} }
   end
 
   def parse(line)
-    campaign, validity, contestant = line.split(" ")[2..4].map { |str| str.split(":").last }
+    entry, _time, campaign, validity, contestant = line.split(" ")[0..4].map { |str| str.split(":").last }
+    return unless entry == "VOTE"
+
+    contestant_data = @data[campaign][contestant]
+    if contestant_data.nil?
+      @data[campaign][contestant] = { votes: 0, uncounted: 0 }
+    end
 
     if validity == "during"
       data[campaign][contestant][:votes] += 1
